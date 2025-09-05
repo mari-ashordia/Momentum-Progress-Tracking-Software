@@ -1,0 +1,38 @@
+@import "tailwindcss";
+
+/* firago-latin-400-normal */
+@font-face {
+  font-family: 'FiraGO';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+  src: url(https://cdn.jsdelivr.net/fontsource/fonts/firago@latest/latin-400-normal.woff2) format('woff2'), url(https://cdn.jsdelivr.net/fontsource/fonts/firago@latest/latin-400-normal.woff) format('woff');
+}
+html, body {
+    @apply font-serif;
+}
+
+body {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+.down-arrow {
+    @apply w-[24px] h-[24px] text-[#0D0F10] cursor-pointer hover:text-[#8338EC]
+}
+.filter-text {
+    @apply text-[#0D0F10] text-[16px]
+}
+.filter-div {
+    @apply flex gap-2 
+}
+.task-details {
+    @apply text-[16px] text-[#474747]
+}
+.comment-area {
+    @apply relative left-[50%] -translate-x-[50%] top-6 p-5 resize-none border-[0.3px] border-[#ADB5BD] rounded-[10px] w-[90%] h-[135px] bg-white text-[#898989] text-[14px] font-[350]  focus:outline-purple-400/40 focus:shadow-2xl focus:shadow-[#ba94ef]
+}
+.comment-button {
+    @apply cursor-pointer relative bottom-9 left-[67%] bg-[#8338EC] py-[8px] px-[20px] border rounded-[20px] text-white text-[16px]
+}
