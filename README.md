@@ -1,13 +1,52 @@
-# React + Vite
+# Progress Tracker App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React-based progress tracking application that allows teams to manage tasks and employees. 
+Features include a task grid, adding new tasks, assigning employees, and monitoring task progress.
 
-Currently, two official plugins are available:
+## Features
+- View tasks in a dynamic task grid
+- Filter tasks by departments, priorities and employees
+- Add new tasks
+- Add new employees
+- Assign tasks to employees
+- Track task and employee progress
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Tech Stack
+- React
+- Zustand (state management)
+- Vite (build tool)
+- TailwindCSS (styling)
 
-## Expanding the ESLint configuration
+## Installation
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Make sure you have Git, Node.js and npm installed on your device,
+only then type the following commands in terminal
 
+- git clone https://github.com/mari-ashordiaMomentum-Progress-Tracking-Software.git
+- cd progress-tracker
+- npm install
+- npm run dev
+
+then type http://localhost:5173 in  your browser
+
+
+## Screenshots
+
+Tasks grid view
+![screenshot](screenshots/screenshot1.PNG)
+
+Filter dropdown
+![screenshot](screenshots/screenshot2.PNG)
+
+Create a new task
+![screenshot](screenshots/screenshot3.PNG)
+
+Task details page
+![screenshot](screenshots/screenshot4.PNG)
+
+Create a new employee
+![screenshot](screenshots/screenshot5.PNG)
+
+
+## License
+This project is licensed under the MIT License.

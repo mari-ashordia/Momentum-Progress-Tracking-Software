@@ -121,7 +121,7 @@ export const Modal = () => {
                         ))) 
                         }
                     </div>
-                    <div className = "w-full">
+                    <div className = "w-full flex flex-col relative top-[2px]">
                         <label htmlFor = "surname" className = "text-[#343A40] text-[14px]">გვარი*</label>
                         <input type = "text" value = {surname} name = "surname" onChange = {(e) => handleInput(e)} id = "surname" className = "border border-[#CED4DA] rounded-[6px] py-[5px] w-[270px] h[40px] px-[10px] focus:border-[#8338EC]" />
                         {errors.surname && (Object.values(errors.surname).map(str => (
