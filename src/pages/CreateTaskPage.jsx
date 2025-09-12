@@ -45,11 +45,13 @@ const CreateTaskPage = () => {
     if(name === "მაღალი") return priority[2].icon;
   }
 
+  const [isTouched, setIsTouched] = useState(false);
   const handleChange = (e) => {
     const {name, value} = e.target;
     setTaskData(prev => {
       return {...prev, [name]: value}
     })
+    value === "" ? setIsTouched(false) : setIsTouched(true);
     name === "department" && setIsDepartmentSelected(true);
   }
 
@@ -113,7 +115,7 @@ const CreateTaskPage = () => {
               <div className = "flex flex-col mb-2">
                 <label for = "header" className = "py-[6px] text-[#343A40] text-[16px]">სათაური*</label>
                 <input id = "header" name = "header" value = {taskData.header} onChange = {(e) => handleChange(e)} className = "w-500px h-[50px] border text-[#0D0F10] text-[14px] font-[300] bg-white rounded-[5px] border-[#DEE2E6] p-[14px] focus:border-[#8338EC] focus:outline-none"/>
-                {errors.header && (
+                {(errors.header && isTouched) && (
                   Object.values(errors.header).map((str) => (
                     <p key = {str} className = "text-[#6C757D] text-[10px] font-[350]">{str}</p>
                   ))
@@ -122,7 +124,7 @@ const CreateTaskPage = () => {
               <div className = "flex flex-col mb-[12px]">
                 <label for = "description" className = "py-[6px] text-[#343A40] text-[16px]">აღწერა</label>
                 <textarea id = "description" name = "description" value = {taskData.description} onChange = {(e) => handleChange(e)} className = "w-[550px] h-[130px] resize-none bg-[#fff] border text-[#0D0F10] text-[14px] font-[300] border-[#DEE2E6] p-[14px] rounded-[5px] focus:border-[#8338EC] focus:outline-none"></textarea>
-                {errors.description && (
+                {(errors.description && isTouched) && (
                   Object.values(errors.description).map((str) => (
                     <p key = {str} className = "text-[#6C757D] text-[10px] font-[350]]">{str}</p>
                   ))
@@ -230,10 +232,10 @@ const CreateTaskPage = () => {
                       </Select>
                 </div>
                 
-                <div className = "relative bottom-[9px]">
+                <div className = "relative bottom-[23px]">
                   <label for = "deadline" className = "text-[#343A40] text-[16px]">დედლაინი</label>
                   <div>
-                    <CiCalendar size = {16} onClick = {() => datePickerRef.current.setFocus()} className = "relative top-[25px] z-50 left-3 cursor-pointer"/>
+                    <CiCalendar size = {16} onClick = {() => datePickerRef.current.setFocus()} className = "relative top-[25px] z-10 left-3 cursor-pointer"/>
                     <DatePicker 
                       selected={startDate} 
                       onChange={(date) => handleDate(date)} 

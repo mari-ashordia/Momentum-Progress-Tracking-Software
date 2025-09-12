@@ -2,7 +2,7 @@ import { PiArrowBendUpLeftFill } from "react-icons/pi";
 import { useStore } from "../store/useStore";
 import { useState } from "react";
 import { CommentBox } from "./CommentBox";
-export const CommentComp = ({id, newStyle, text, avatar, nickname, subComment}) => {
+export const CommentComp = ({id, text, avatar, nickname, subComment}) => {
   const addComment = useStore(state => state.addComment);
   const [isReplyOpen, setIsReplyOpen] = useState(false);
   const commentError = useStore(state => state.commentError);

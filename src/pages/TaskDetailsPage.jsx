@@ -57,11 +57,6 @@ const TaskDetailsPage = () => {
       return `${day}-${dd}/${mm}/${yyyy}`;
   }
 
-  const unShiftNewComment = () => {
-    const updatedcomments = [];
-  }
-
-
   const allComments = () => {
     const commentsQuantity = comments.reduce((total, current) => {
         return total + 1 + current.sub_comments.length;
@@ -138,7 +133,7 @@ const TaskDetailsPage = () => {
           </div>
         </div>
       </div>
-      <div className = "w-[45%] h-[575px] bg-[rgba(221,210,255,0.4)] border-[0.3px] border-transparent rounded-[10px] overflow-hidden">
+      <div className = "w-[45%] h-[575px] bg-[rgba(221,210,255,0.4)] border-[0.3px] border-transparent rounded-[10px]">
         <CommentBox showClose={false}/>
         <div className = "flex gap-2 relative items-center top-[8px] ml-[27px] pb-6">
           <p className = "text-[20px] font-[500]">კომენტარები</p>

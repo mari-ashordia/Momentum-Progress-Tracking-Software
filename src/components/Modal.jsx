@@ -17,16 +17,23 @@ export const Modal = () => {
         });
     const [errors, setErrors] = useState({});
     const [avatarPreview, setAvatarPreview] = useState("");
+    const [isDirty, setIsDirty] = useState({
+        name: false,
+        surname: false,
+        avatar: false,
+        department_id: false
+    })
     const {name, surname, avatar, department_id} = employee;
     const avatarRef = useRef(null);
     console.log("employee: ", employee);
     const [dep] = departmentShortNames.filter(({id}) => id === department_id);
     const handleInput = (e) => {
+        setIsDirty(prev => ({...prev, [e.target.name]: true}))
         if(e.target.name === "department_id"){
             const [department] = departmentShortNames.filter(dep => dep.name === e.target.value);
             setEmployee(prev => ({
                 ...prev,
-                [e.target.name]: department.id
+                [e.target.name]: department?.id
             }))
         }else {
             setEmployee((prev) => ({
@@ -34,15 +41,11 @@ export const Modal = () => {
                 [e.target.name]: e.target.value
             }));
         }   
-        
-        // setIsDirty(prev => ({
-        //     ...prev,
-        //     [e.target.name]: true
-        // }));
     }
 
     const handleAvatar = (e) => {
         const avatar = e.target.files[0];
+        setIsDirty(prev => ({...prev, avatar: avatar}))
         setEmployee((prev) => ({
             ...prev,
             avatar: avatar
@@ -93,8 +96,8 @@ export const Modal = () => {
     }
   return createPortal(
     <div className = "flex justify-center">
-        <div onClick = {() => closeModal()} className = "fixed inset-0 bg-black/50 backdrop-blur-xs"/>
-        <div className = " overflow-hidden absolute top-[80px] bg-white w-[700px] h-[570px] border-transparent rounded-[10px]">
+        <div onClick = {() => closeModal()} className = "fixed inset-0 bg-black/50 backdrop-blur-xs z-50"/>
+        <div className = " overflow-hidden absolute top-[80px] bg-white w-[700px] h-[570px] border-transparent rounded-[10px] z-50">
             <div className = "relative left-[92%] top-5">
                 <div className = "border border-transparent bg-[#DEE2E6] w-[30px] h-[30px] rounded-[50%] flex justify-center items-center">
                     <button onClick = {() => closeModal()} className = "text-white text-3xl cursor-pointer relative bottom-0.5">&times;</button>
@@ -114,7 +117,7 @@ export const Modal = () => {
                             </div> */}
                         {/* ))} */}
                         {
-                           errors.name && (Object.values(errors.name).map(str => (
+                           (isDirty.name && errors.name) && (Object.values(errors.name).map(str => (
                             <div key = {str} className = "text-[#6C757D] text-[10px]">
                                 &#10003; {str}
                             </div>
@@ -124,14 +127,14 @@ export const Modal = () => {
                     <div className = "w-full flex flex-col relative top-[2px]">
                         <label htmlFor = "surname" className = "text-[#343A40] text-[14px]">გვარი*</label>
                         <input type = "text" value = {surname} name = "surname" onChange = {(e) => handleInput(e)} id = "surname" className = "border border-[#CED4DA] rounded-[6px] py-[5px] w-[270px] h[40px] px-[10px] focus:border-[#8338EC]" />
-                        {errors.surname && (Object.values(errors.surname).map(str => (
+                        {(isDirty.surname && errors.surname) && (Object.values(errors.surname).map(str => (
                             <div key = {str} className = "text-[#6C757D] text-[10px]">
                                 &#10003; {str}
                             </div>
                         )))}
                     </div>
                 </div>
-                <div className = "flex flex-col relative">
+                <div className = "flex flex-col relative mt-4">
                     <label hmtlFor = "avatar" className = "text-[#343A40] text-[14px]">ავატარი*</label>
                     <input ref = {avatarRef} type = "file" name = "avatar" onChange = {(e) => handleAvatar(e)} className = "border border-dashed border-[#CED4DA] rounded-[6px] h-[120px] text-[#343A40] text-[14px] focus:border-[#8338EC]"/>
                     {avatarPreview && (
@@ -142,7 +145,7 @@ export const Modal = () => {
                             </button>
                         </div>
                     )}
-                    {errors.avatar && (Object.values(errors.avatar).map(str => (
+                    {(isDirty.avatar && errors.avatar) && (Object.values(errors.avatar).map(str => (
                             <div key = {str} className = "text-[#6C757D] text-[10px]">
                                 &#10003; {str}
                             </div>
@@ -156,7 +159,7 @@ export const Modal = () => {
                             <option key = {id} value = {name}>{shortName}</option>
                         ))}
                     </select>
-                    {errors.department && (Object.values(errors.department).map(str => (
+                    {(isDirty.department_id && errors.department) && (Object.values(errors.department).map(str => (
                             <div key = {str} className = "text-[#6C757D] text-[10px]">
                                 &#10003; {str}
                             </div>
